@@ -1,0 +1,21 @@
+cd ~
+mkdir devops
+cd devops
+mkdir lesson2
+cd lesson2
+touch health_check.sh
+chmod +x health_check.sh
+nano health_check.sh   
+->   
+    services=("Nginx" "SSH")
+    for service in ${services[@]}; do
+        if [ systemctl is-active --quiet "$service" ]; then
+            echo "Dịch vụ $service đang chạy"
+        else
+            echo -e "\e[31m Dịch vụ $service đã chết!\e[0m"
+        fi
+    done
+->   
+    Ctrl + X
+
+./health_check.sh
